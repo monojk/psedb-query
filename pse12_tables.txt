@@ -1,0 +1,147 @@
+pse12db tables:
+================
+
+tables are:
+   _dbl_auto_id_table
+   change_table
+   db_change_timestamp_table
+   media_stack_sort_table
+   media_stack_to_media_table
+   media_table
+   media_to_metadata_table
+   metadata_blob_table
+   metadata_date_time_table
+   metadata_decimal_table
+   metadata_description_table
+   metadata_integer_table
+   metadata_string_table
+   rendition_description_table
+   rendition_to_master_table
+   tag_table
+   tag_to_media_table
+   tag_to_metadata_table
+   version_stack_sort_table
+   version_stack_to_media_table
+   version_table
+   volume_table
+
+column names for _dbl_auto_id_table:
+   last_assigned_id
+
+column names for change_table:
+   change_id
+   change_type
+
+column names for db_change_timestamp_table:
+   change_id
+   change_date_time
+
+column names for media_stack_sort_table:
+   media_id
+   search_date_begin
+   search_date_end
+
+column names for media_stack_to_media_table:
+   stack_tag_id
+   media_id
+   media_index
+
+column names for media_table:
+   id                             <--- 520766
+   change_id
+   full_filepath                  ---> /Public/Public Pictures/2014/2014 01/IMG_2014_01-03.JPG
+   filepath_search_index
+   filename_search_index
+   mime_type
+   volume_id                      ----> 1030216
+   search_date_begin
+   search_date_end
+   rendition_description_id
+
+column names for media_to_metadata_table:
+   media_id
+   metadata_id
+
+column names for metadata_blob_table:
+   id
+   description_id
+   value
+
+column names for metadata_date_time_table:
+   id
+   description_id
+   value
+
+column names for metadata_decimal_table:
+   id
+   description_id
+   value
+
+column names for metadata_description_table:
+   id
+   identifier
+   data_type
+   association_type
+   can_have_multiple_items
+
+column names for metadata_integer_table:
+   id
+   description_id
+   value
+
+column names for metadata_string_table:
+   id                               <----- ID
+   description_id                   ----->
+   value                            ----->
+
+column names for rendition_description_table:
+   id
+   identifier
+
+column names for rendition_to_master_table:
+   id
+   master_id
+   rendition_id
+
+column names for tag_table:
+   id                               <------ 521253
+   change_id
+   name                             ------> Volker
+   parent_id                                521222
+   sibling_index                            2
+   type_name                        ------> user_person
+   media_is_ordered
+   can_tag_media
+   can_have_children
+   applies_to_all_in_media_stack
+   applies_to_all_in_version_stack
+
+column names for tag_to_media_table:
+   media_id                         ------> 520766   (erstes Element der Liste)
+   tag_id                           <------ 521253
+   media_index
+
+column names for tag_to_metadata_table:
+   tag_id                           <------ 521253
+   metadata_id                      ------> 521254   (erstes Element der Liste)
+
+column names for version_stack_sort_table:
+   media_id
+   search_date_begin
+   search_date_end
+
+column names for version_stack_to_media_table:
+   stack_tag_id
+   media_id
+   media_index
+   parent_id
+
+column names for version_table:
+   version_number
+
+column names for volume_table:
+   id                                 <---- 1030216
+   description                        ----> Data
+   serial                             ----> 7948414
+   drive_path_if_builtin              ----> D:
+   type                               ----> builtin_drive
