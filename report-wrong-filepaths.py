@@ -27,6 +27,7 @@ def get_volume_ids(conn):
         table[row[0]] = row[1]
     return table
 
+
 def main():
     database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
     filepath = r"D:/Public/Public Pictures/"
