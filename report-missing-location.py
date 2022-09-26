@@ -104,9 +104,9 @@ def main():
     conn = create_connection(database)
     with conn:
         location_tag_list = get_location_tags(conn)
-        # print(location_tags)
+        # print(location_tag_list)
         location_tag_dict = dict.fromkeys(location_tag_list, 1)
-        # print(location_dict)
+        # print(location_tag_dict)
 
         volume_ids_dict = get_volume_ids(conn)
         media_id_2_date_time_dict = get_media_id_2_date_time_dict(conn)
