@@ -16,4 +16,4 @@ The following reports are available:
 
 * report-wrong-filepaths.py
 
-  print media that don't belong to the intended datastructure
+  print media that don't belong to the intended directory tree
