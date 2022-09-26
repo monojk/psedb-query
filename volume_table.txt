@@ -1,9 +1,9 @@
-id      description	 serial	    drive_path_if_builtin	          type
+id      description  serial     drive_path_if_builtin           type
 ---------------------------------------------------------------------------------------
-2       database     relative	  amoc:database_relative_volume		database_relative_drive
-2061	  BOOT         2284607795	C:	                            builtin_drive
-155095	Platte2	     3294761376	Z:	                            builtin_drive
-229192	090706_1908	 331564660		                              readonly_drive
-325050	             no drive		                                no_drive
-1030216	Data	       7948414	  D:	                            builtin_drive
-1037256	G:	         1958178252	G:	                            builtin_drive
+2       database     relative   amoc:database_relative_volume   database_relative_drive
+2061    BOOT         2284607795 C:                              builtin_drive
+155095  Platte2      3294761376 Z:                              builtin_drive
+229192  090706_1908  331564660                                  readonly_drive
+325050               no drive                                   no_drive
+1030216 Data         7948414    D:                              builtin_drive
+1037256 G:           1958178252 G:                              builtin_drive
