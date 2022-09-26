@@ -1,5 +1,5 @@
 # psedb-query
-Queries and reports from the PSE DB (Photoshop Elements)
+Queries and reports from the PSE DB (Adobe's Photoshop Elements)
 
 The following reports are available:
 * psedb-query.py
