@@ -1,4 +1,4 @@
-id      description	 serial	    drive_path_if_builtin	          type
+id      description  serial     drive_path_if_builtin           type
 ---------------------------------------------------------------------------------------
 2       database     relative   amoc:database_relative_volume   database_relative_drive
 2061    BOOT         2284607795 C:                              builtin_drive
