@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 
+
 def create_connection(db_file):
     conn = None
     try:
@@ -9,6 +10,7 @@ def create_connection(db_file):
         print(e)
 
     return conn
+
 
 def print_table_names_and_columns(conn):
     newline_indent = '\n   '
@@ -24,14 +26,16 @@ def print_table_names_and_columns(conn):
                 +newline_indent
                 +(newline_indent.join(column_names)))
 
+
 def main():
-    #database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 1 1\catalog.pse12db"
-    database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog\catalog.pse17db"
+    # database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+    database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Joachims Katalog 3\catalog.pse20db"
 
     # create a database connection
     conn = create_connection(database)
     with conn:
         print_table_names_and_columns(conn)
+
 
 if __name__ == '__main__':
     main()

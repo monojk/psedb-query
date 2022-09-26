@@ -1,10 +1,14 @@
-pse17db tables:      column "tag_confidence" was added wrt pse12db
-================
+pse20db tables:		autotag_segment_info_table, autotag_segment_to_tag_table, face_segment_info_table, face_segment_to_tag_table added
+===============
 
 tables are:
    _dbl_auto_id_table
+   autotag_segment_info_table
+   autotag_segment_to_tag_table
    change_table
    db_change_timestamp_table
+   face_segment_info_table
+   face_segment_to_tag_table
    media_stack_sort_table
    media_stack_to_media_table
    media_table
@@ -28,6 +32,17 @@ tables are:
 column names for _dbl_auto_id_table:
    last_assigned_id
 
+column names for autotag_segment_info_table:
+   id
+   media_id
+   segment_start
+   segment_end
+
+column names for autotag_segment_to_tag_table:
+   segment_id
+   tag_id
+   tag_confidence
+
 column names for change_table:
    change_id
    change_type
@@ -35,6 +50,19 @@ column names for change_table:
 column names for db_change_timestamp_table:
    change_id
    change_date_time
+
+column names for face_segment_info_table:
+   id
+   segment_start
+   segment_end
+   media_id
+   key_frame
+
+column names for face_segment_to_tag_table:
+   segment_id
+   tag_id
+   face_rect
+   face_data
 
 column names for media_stack_sort_table:
    media_id
@@ -146,4 +174,5 @@ column names for volume_table:
    serial
    drive_path_if_builtin
    type
-   
+
+
