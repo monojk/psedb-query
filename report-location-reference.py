@@ -22,7 +22,39 @@ def get_volume_ids(conn):
     return table
 
 
+def get_place_alias_name_id(conn):      # returns description_id for place alias
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM metadata_description_table WHERE identifier=?", ("pse:place_alias_name",))
+    this_id = None
+    for row in cur.fetchall():
+        this_id = row[0]
+    return this_id
+
+
+def get_metadata_string_table_dict(conn):     # returns dict of all metadata_ids with value for place alisa
+    table = {}
+    cur = conn.cursor()
+    place_alias_name_id = get_place_alias_name_id(conn)
+    # print(place_alias_name_id)
+    cur.execute("SELECT id, value FROM metadata_string_table WHERE description_id=?", (place_alias_name_id,))
+    for row in cur.fetchall():
+        table[row[0]] = row[1]
+    return table
+
+
+def get_tag_to_metadata_table_dict(conn):   # this dict maps the metadata_id to the tag_id
+    table = {}
+    cur = conn.cursor()
+    cur.execute("SELECT tag_id, metadata_id FROM tag_to_metadata_table")
+    for row in cur.fetchall():
+        table[row[1]] = row[0]
+    return table
+
+
 def get_user_place_dict(conn):
+    metadata_string_dict = get_metadata_string_table_dict(conn)         # metadata_ids that describe place aliases
+    # print(metadata_string_dict)
+    tag_to_metadata_table_dict = get_tag_to_metadata_table_dict(conn)   # metadata_id -> tag_id
     table = {}
     names = {}
     parents = {}
@@ -43,6 +75,14 @@ def get_user_place_dict(conn):
                 break
         # print(name)
         table[tag_id] = name
+        # search for the alias
+        for metadata_id, this_tag_id in tag_to_metadata_table_dict.items():
+            if tag_id == this_tag_id:
+                if metadata_id in metadata_string_dict:
+                    # print(f"{tag_id} -> {metadata_id}")
+                    table[tag_id] = f"{name} / {metadata_string_dict[metadata_id]}"
+                    # print(table[tag_id])
+                    break
     return table
 
 
@@ -56,11 +96,11 @@ def get_tag_to_media_dict(conn):
 
 
 def main():
-    database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
-    reportFile = r"D:/Joachim/Dropbox/Photos/GemeinsamerKatalog_Orte.txt"
+    # database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+    # reportFile = r"D:/Joachim/Dropbox/Photos/GemeinsamerKatalog_Orte.txt"
 
-    # database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Joachims Katalog 3\catalog.pse20db"
-    # reportFile = r"D:/Joachim/Dropbox/Photos/JoachimsKatalog_Orte.txt"
+    database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Joachims Katalog 3\catalog.pse20db"
+    reportFile = r"D:/Joachim/Dropbox/Photos/JoachimsKatalog_Orte.txt"
 
     f = open(reportFile, 'w', encoding="utf-8")
     f.write(database+"\n")
