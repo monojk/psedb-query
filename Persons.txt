@@ -1,0 +1,43 @@
+media_table:
+    id                      2441
+    change_id               126334
+    full_filepath           /Public/Public Pictures/1996/1996 04/img457-1.jpg
+    file_path_search_index  /public/public pictures/2020/2020 08/
+    file_name_search_index  img457-1.jpg
+    mime_type               image/jpeg
+    volume_id               1030216
+    search_date_begin       19960408T000000
+    search_date_end         19960409T000000
+
+volume_table:
+    id                      1030216
+    description             Data
+    serial                  7948414
+    drive_path_if_builtin   D:
+    type                    builtin_drive
+
+tag_to_media_table:
+    media_id        2441
+    tag_id          43
+
+tag_table:
+    id              33
+    change_id       96128
+    name            Familie
+    parent_id       547140
+    sibling_index   0
+    type_name       user_person
+
+    id              43
+    change_id       179658
+    name            Joachim
+    parent_id       33
+    sibling_index   0
+    type_name       user_person
+
+    id              547140
+    change_id       27432
+    name            person_ns
+    parent_id       0
+    sibling_index   12
+    type_name       custom_tag_namespace

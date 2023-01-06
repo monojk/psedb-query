@@ -10,6 +10,10 @@ The following reports are available:
 
   print locations and the respective media
 
+* report-person-reference.py
+
+  print file names and the person names on the media
+
 * report-missing-location.py
 
   print media that don't have location information

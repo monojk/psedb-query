@@ -117,12 +117,18 @@ def main():
         for tag_id in sorted(user_place_id_dict, key=user_place_id_dict.get):
             f.write(user_place_id_dict[tag_id] + "\n")
             print(user_place_id_dict[tag_id])
+            prev_path = ''
             for media_id in tag_to_media_dict[tag_id]:
                 typeVar = media_id
                 cur.execute("SELECT id, full_filepath, volume_id from media_table WHERE id=?", (typeVar,))
                 for row in cur.fetchall():
                     file_path = volume_ids_dict[row[2]] + row[1]
-                    f.write(f"    {file_path}\n")
+                    [path, name] = file_path.rsplit('/',1)
+                    if prev_path != path:
+                        prev_path = path
+                        f.write(f"  {path}\n")
+                    f.write(f"    {name}\n")
+                    #f.write(f"    {file_path}\n")
                     # print(f"    {file_path}")
 
     f.close()
