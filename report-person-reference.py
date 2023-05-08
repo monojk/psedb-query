@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 from collections import defaultdict
+from datetime import datetime
 
 
 def create_connection(db_file):
@@ -57,11 +58,14 @@ def get_path_to_media_id_dict(conn):
 
 
 def main():
-    # database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
-    # reportFile = r"D:/Joachim/Dropbox/Photos/GemeinsamerKatalog_Personen.txt"
+    now = datetime.now()
+    d = now.strftime("%Y_%m_%d")
 
-    database = r"C:\ProgramData\Adobe\Elements Organizer\Catalogs\Joachims Katalog 3\catalog.pse20db"
-    reportFile = r"D:/Joachim/Dropbox/Photos/JoachimsKatalog_Personen.txt"
+    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+    # reportFile = fr"C:\Users\jkein\Dropbox\Photos/GemeinsamerKatalog_Personen_{d}.txt"
+
+    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
+    reportFile = fr"C:\Users\jkein\Dropbox\Photos/JoachimsKatalog_Personen_{d}.txt"
 
     f = open(reportFile, 'w', encoding="utf-8")
     f.write(database+"\n")
@@ -72,9 +76,9 @@ def main():
     with conn:
         cur = conn.cursor()
         media_to_tag_dict = get_tag_to_media_dict(conn)
-        #print(media_to_tag_dict)
+        # print(media_to_tag_dict)
         person_id_dict = get_tag_person_dict(conn)
-        #print(person_id_dict)
+        # print(person_id_dict)
         media_id_dict = get_path_to_media_id_dict(conn)
         cur.execute("SELECT id, full_filepath, volume_id from media_table")
         for file_path in sorted(media_id_dict):
@@ -89,6 +93,7 @@ def main():
                     f.write(f"    {person}\n")
 
     f.close()
+    print(f"report file: {reportFile}")
 
 
 if __name__ == '__main__':
