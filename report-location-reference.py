@@ -96,11 +96,11 @@ def get_tag_to_media_dict(conn):
 
 
 def main():
-    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
-    reportFile = fr"C:\Users\jkein\Dropbox\Photos/GemeinsamerKatalog_Orte.txt"
+    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+    # reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/GemeinsamerKatalog_Orte.txt"
 
-    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
-    # reportFile = fr"C:\Users\jkein\Dropbox\Photos/JoachimsKatalog_Orte.txt"
+    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
+    reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/JoachimsKatalog_Orte.txt"
 
     f = open(reportFile, 'w', encoding="utf-8")
     f.write(database+"\n")

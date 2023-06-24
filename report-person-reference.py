@@ -61,11 +61,11 @@ def main():
     now = datetime.now()
     d = now.strftime("%Y_%m_%d")
 
-    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
-    # reportFile = fr"C:\Users\jkein\Dropbox\Photos/GemeinsamerKatalog_Personen_{d}.txt"
+    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+    reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/GemeinsamerKatalog_Personen_{d}.txt"
 
-    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
-    reportFile = fr"C:\Users\jkein\Dropbox\Photos/JoachimsKatalog_Personen_{d}.txt"
+    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
+    # reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/JoachimsKatalog_Personen_{d}.txt"
 
     f = open(reportFile, 'w', encoding="utf-8")
     f.write(database+"\n")
