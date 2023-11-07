@@ -31,7 +31,7 @@ def get_place_alias_name_id(conn):      # returns description_id for place alias
     return this_id
 
 
-def get_metadata_string_table_dict(conn):     # returns dict of all metadata_ids with value for place alisa
+def get_metadata_string_table_dict(conn):     # returns dict of all metadata_ids with value for place alias
     table = {}
     cur = conn.cursor()
     place_alias_name_id = get_place_alias_name_id(conn)
@@ -96,14 +96,22 @@ def get_tag_to_media_dict(conn):
 
 
 def main():
-    # database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
-    # reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/GemeinsamerKatalog_Orte.txt"
 
-    database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
-    reportFile = fr"C:\Users\jkein\Meine Ablage\Photos/JoachimsKatalog_Orte.txt"
+    public = True
+    reportPath = fr"C:\Users\jkein\Meine Ablage\Photos"
+    if public:
+        database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Gemeinsamer Katalog 2\catalog.pse20db"
+        reportFileD = fr"{reportPath}/GemeinsamerKatalog_Orte_Detail.txt"
+        reportFile  = fr"{reportPath}/GemeinsamerKatalog_Orte.txt"
+    else:
+        database = r"C:\Users\jkein\Adobe_PSE_Catalogs\Joachims Katalog 3\catalog.pse20db"
+        reportFileD = fr"{reportPath}/JoachimsKatalog_Orte_Detail.txt"
+        reportFile  = fr"{reportPath}/JoachimsKatalog_Orte.txt"
 
-    f = open(reportFile, 'w', encoding="utf-8")
-    f.write(database+"\n")
+    f  = open(reportFile,  'w', encoding="utf-8")
+    fD = open(reportFileD, 'w', encoding="utf-8")
+    f.write(database + "\n")
+    fD.write(database+ "\n")
     print(database)
 
     # create a database connection
@@ -116,22 +124,25 @@ def main():
         tag_to_media_dict = get_tag_to_media_dict(conn)
         for tag_id in sorted(user_place_id_dict, key=user_place_id_dict.get):
             f.write(user_place_id_dict[tag_id] + "\n")
+            fD.write(user_place_id_dict[tag_id] + "\n")
             print(user_place_id_dict[tag_id])
-            prev_path = ''
+            FilePathsDict = defaultdict(list)
             for media_id in tag_to_media_dict[tag_id]:
                 typeVar = media_id
+                #print(media_id)
                 cur.execute("SELECT id, full_filepath, volume_id from media_table WHERE id=?", (typeVar,))
                 for row in cur.fetchall():
                     file_path = volume_ids_dict[row[2]] + row[1]
                     [path, name] = file_path.rsplit('/',1)
-                    if prev_path != path:
-                        prev_path = path
-                        f.write(f"  {path}\n")
-                    f.write(f"    {name}\n")
-                    #f.write(f"    {file_path}\n")
-                    # print(f"    {file_path}")
+                    FilePathsDict[path].append(name)
+            for path in sorted(FilePathsDict):
+                f.write(f"  {path}\n")
+                fD.write(f"  {path}\n")
+                for name in sorted(FilePathsDict[path]):
+                    fD.write(f"    {name}\n")
 
     f.close()
+    fD.close()
 
 
 if __name__ == '__main__':
